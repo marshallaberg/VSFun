@@ -22,56 +22,57 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.txtDB = New System.Windows.Forms.TextBox()
+        Me.txtFirstName = New System.Windows.Forms.TextBox()
+        Me.txtLastName = New System.Windows.Forms.TextBox()
+        Me.txtDOB = New System.Windows.Forms.TextBox()
+        Me.txtCbp = New System.Windows.Forms.TextBox()
         Me.btnInsert = New System.Windows.Forms.Button()
-        Me.TextBox6 = New System.Windows.Forms.TextBox()
+        Me.txtQuery = New System.Windows.Forms.TextBox()
         Me.btnRun = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtIDReturned = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
-        'TextBox1
+        'txtDB
         '
-        Me.TextBox1.Location = New System.Drawing.Point(128, 176)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox1.TabIndex = 0
-        Me.TextBox1.Text = "other"
+        Me.txtDB.Location = New System.Drawing.Point(128, 176)
+        Me.txtDB.Name = "txtDB"
+        Me.txtDB.Size = New System.Drawing.Size(100, 20)
+        Me.txtDB.TabIndex = 0
+        Me.txtDB.Text = "other"
         '
-        'TextBox2
+        'txtFirstName
         '
-        Me.TextBox2.Location = New System.Drawing.Point(364, 67)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(128, 20)
-        Me.TextBox2.TabIndex = 1
-        Me.TextBox2.Text = "Tom"
+        Me.txtFirstName.Location = New System.Drawing.Point(364, 67)
+        Me.txtFirstName.Name = "txtFirstName"
+        Me.txtFirstName.Size = New System.Drawing.Size(128, 20)
+        Me.txtFirstName.TabIndex = 1
+        Me.txtFirstName.Text = "Tom"
         '
-        'TextBox3
+        'txtLastName
         '
-        Me.TextBox3.Location = New System.Drawing.Point(364, 93)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(128, 20)
-        Me.TextBox3.TabIndex = 1
-        Me.TextBox3.Text = "Jones"
+        Me.txtLastName.Location = New System.Drawing.Point(364, 93)
+        Me.txtLastName.Name = "txtLastName"
+        Me.txtLastName.Size = New System.Drawing.Size(128, 20)
+        Me.txtLastName.TabIndex = 1
+        Me.txtLastName.Text = "Jones"
         '
-        'TextBox4
+        'txtDOB
         '
-        Me.TextBox4.Location = New System.Drawing.Point(364, 119)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(128, 20)
-        Me.TextBox4.TabIndex = 1
-        Me.TextBox4.Text = "1988-12-22"
+        Me.txtDOB.Location = New System.Drawing.Point(364, 119)
+        Me.txtDOB.Name = "txtDOB"
+        Me.txtDOB.Size = New System.Drawing.Size(128, 20)
+        Me.txtDOB.TabIndex = 1
+        Me.txtDOB.Text = "1988-12-22"
         '
-        'TextBox5
+        'txtCbp
         '
-        Me.TextBox5.Location = New System.Drawing.Point(364, 145)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(128, 20)
-        Me.TextBox5.TabIndex = 1
-        Me.TextBox5.Text = "0"
+        Me.txtCbp.Location = New System.Drawing.Point(364, 145)
+        Me.txtCbp.Name = "txtCbp"
+        Me.txtCbp.Size = New System.Drawing.Size(128, 20)
+        Me.txtCbp.TabIndex = 1
+        Me.txtCbp.Text = "0"
         '
         'btnInsert
         '
@@ -82,12 +83,12 @@ Partial Class Form1
         Me.btnInsert.Text = "&Insert"
         Me.btnInsert.UseVisualStyleBackColor = True
         '
-        'TextBox6
+        'txtQuery
         '
-        Me.TextBox6.Location = New System.Drawing.Point(203, 262)
-        Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(289, 20)
-        Me.TextBox6.TabIndex = 3
+        Me.txtQuery.Location = New System.Drawing.Point(203, 262)
+        Me.txtQuery.Name = "txtQuery"
+        Me.txtQuery.Size = New System.Drawing.Size(289, 20)
+        Me.txtQuery.TabIndex = 3
         '
         'btnRun
         '
@@ -107,20 +108,29 @@ Partial Class Form1
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Query"
         '
+        'txtIDReturned
+        '
+        Me.txtIDReturned.Location = New System.Drawing.Point(487, 382)
+        Me.txtIDReturned.Name = "txtIDReturned"
+        Me.txtIDReturned.Size = New System.Drawing.Size(128, 20)
+        Me.txtIDReturned.TabIndex = 6
+        Me.txtIDReturned.Text = "IDReturned"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.txtIDReturned)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnRun)
-        Me.Controls.Add(Me.TextBox6)
+        Me.Controls.Add(Me.txtQuery)
         Me.Controls.Add(Me.btnInsert)
-        Me.Controls.Add(Me.TextBox5)
-        Me.Controls.Add(Me.TextBox4)
-        Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtCbp)
+        Me.Controls.Add(Me.txtDOB)
+        Me.Controls.Add(Me.txtLastName)
+        Me.Controls.Add(Me.txtFirstName)
+        Me.Controls.Add(Me.txtDB)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
@@ -128,45 +138,12 @@ Partial Class Form1
 
     End Sub
 
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents txtDB As TextBox
+    Friend WithEvents txtFirstName As TextBox
+    Friend WithEvents txtLastName As TextBox
+    Friend WithEvents txtDOB As TextBox
+    Friend WithEvents txtCbp As TextBox
     Friend WithEvents btnInsert As Button
+    Friend WithEvents txtIDReturned As TextBox
 
-    Private Sub BtnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
-        'this is my query builder. "qs" is the query
-        Dim db, fn, ln, dob, qs As String
-        Dim cbp As String
-
-        TextBox6.Text = ""
-        db = TextBox1.Text
-        fn = TextBox2.Text
-        ln = TextBox3.Text
-        dob = TextBox4.Text
-        cbp = TextBox5.Text
-        TextBox6.Text =
-            "USE " + db + "  DECLARE @ContactIDOut INT;  EXEC dbo.InsertContact   
-    @FirstName	=   '" + fn + "', @LastName	=	'" + ln + "', @DateOfBirth =  '" + dob + "',  @AllowCBP	=	
-" + cbp + ",  @ContactID = @ContactIDOut OUTPUT;"
-        qs = TextBox6.Text
-        'Return qs   send query string out of the function
-    End Sub
-
-    Friend WithEvents TextBox6 As TextBox
-    Friend WithEvents btnRun As Button
-    Friend WithEvents Label1 As Label
-
-    Private Sub BtnRun_Click(sender As Object, e As EventArgs) Handles btnRun.Click
-        'this is my first attempt at a connection string builder. "cs" is the connection string. 
-        'can you help me wiht some usage here?
-        Dim cs, svr, db, un, pass As String
-        svr = "(local)"
-        db = TextBox1.Text
-        un = "sa"
-        pass = "Password1"
-        cs = "Server=" + svr + ";Database=" + db + ";User Id=" + un + "; Password=" + pass + ";"
-
-    End Sub
 End Class

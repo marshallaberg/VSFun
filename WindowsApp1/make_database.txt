@@ -1,0 +1,193 @@
+﻿USE [master]
+GO
+
+/****** Object:  Database [other]    Script Date: 5/16/2019 8:42:58 PM ******/
+CREATE DATABASE [other]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'other', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\other.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'other_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\other_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [other].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [other] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [other] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [other] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [other] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [other] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [other] SET AUTO_CLOSE OFF 
+GO
+
+ALTER DATABASE [other] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [other] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [other] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [other] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [other] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [other] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [other] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [other] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [other] SET  DISABLE_BROKER 
+GO
+
+ALTER DATABASE [other] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [other] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [other] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [other] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [other] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [other] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [other] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [other] SET RECOVERY FULL 
+GO
+
+ALTER DATABASE [other] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [other] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [other] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [other] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [other] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+
+ALTER DATABASE [other] SET DELAYED_DURABILITY = DISABLED 
+GO
+
+ALTER DATABASE [other] SET QUERY_STORE = OFF
+GO
+
+ALTER DATABASE [other] SET  READ_WRITE 
+GO
+
+USE [other]
+GO
+
+/****** Object:  Table [dbo].[Contacts]    Script Date: 5/16/2019 8:43:31 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Contacts](
+	[FirstName] [nvarchar](50) NULL,
+	[LastName] [nvarchar](50) NULL,
+	[DateOfBirth] [date] NULL,
+	[AllowContactByPhone] [bit] NULL,
+	[Title] [nvarchar](50) NULL,
+	[ModDate] [smalldatetime] NULL,
+	[ID] [smallint] IDENTITY(1,1) NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Contacts] ADD  DEFAULT (getdate()) FOR [ModDate]
+GO
+
+USE [other]
+GO
+
+/****** Object:  StoredProcedure [dbo].[InsertContact]    Script Date: 5/16/2019 8:44:06 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[InsertContact]
+(
+ @FirstName		VARCHAR(50),
+ @LastName		VARCHAR(50) = NULL,
+ @DateOfBirth	DATE = null,
+ @AllowCBP		BIT = 0,
+ @ContactID	    INT OUTPUT
+)
+AS
+BEGIN; 
+	
+	SET NOCOUNT ON;
+IF NOT EXISTS (SELECT 1 FROM DBO.Contacts
+				WHERE FirstName = @FirstName AND LastName = @LastName AND DateOfBirth = @DateOfBirth)
+BEGIN;
+	INSERT INTO dbo.Contacts	(FirstName, LastName, DateOfBirth, AllowContactByPhone)
+		VALUES					(@FirstName, @LastName, @DateOfBirth, @AllowCBP);
+
+	SELECT @ContactID = SCOPE_IDENTITY();
+END;
+
+EXEC dbo.SelectContact @ContactID = @ContactID;
+
+	SET NOCOUNT OFF;
+END;
+GO
+
+
+--USE [other]
+--GO
+
+--DECLARE @RC int
+--DECLARE @FirstName varchar(50)
+--DECLARE @LastName varchar(50)
+--DECLARE @DateOfBirth date
+--DECLARE @AllowCBP bit
+--DECLARE @ContactID int
+
+---- TODO: Set parameter values here.
+
+--EXECUTE @RC = [dbo].[InsertContact] 
+--   @FirstName
+--  ,@LastName
+--  ,@DateOfBirth
+--  ,@AllowCBP
+--  ,@ContactID OUTPUT
+--GO
